@@ -1,8 +1,13 @@
 const fs = require('fs');
+const path = require('path');
 
 class RebuildInProgressPlugin {
   constructor(filePath) {
-    this.filePath = filePath;
+    this.filePath = filePath || this.getDefaultRebuildInProgressStatusFile();
+  }
+
+  getDefaultRebuildInProgressStatusFile() {
+    return path.resolve('node_modules/.rebuildInProgress');
   }
 
   apply(compiler) {
