@@ -1,5 +1,5 @@
 {
-  "name": "funbox-rebuild-in-progress-webpack-plugin",
+  "name": "@funboxteam/rebuild-in-progress-webpack-plugin",
   "version": "1.2.0",
   "description": "Creates a file when webpack build starts and deletes it when it ends",
   "main": "index.js"
