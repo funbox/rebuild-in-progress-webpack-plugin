@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.0 (06.07.2017)
+
+* Add .editorconfig.
+* Move the package into @funboxteam scope.
+
 ## 1.2.0 (25.12.2017)
 
 * Add .gitignore.
