@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.0.0 (26.02.2019)
+
+* Rewrite for compatibility with webpack 4.
+
 ## 2.0.0 (06.07.2017)
 
 * Add .editorconfig.
