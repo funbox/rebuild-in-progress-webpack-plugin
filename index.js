@@ -11,11 +11,11 @@ class RebuildInProgressPlugin {
   }
 
   apply(compiler) {
-    compiler.plugin('compilation', () => {
+    compiler.hooks.compile.tap('RebuildInProgressPlugin', () => {
       fs.writeFileSync(this.filePath, '');
       console.log('[RebuildInProgressPlugin] File has been created: %s', this.filePath);
     });
-    compiler.plugin('done', () => {
+    compiler.hooks.done.tap('RebuildInProgressPlugin', () => {
       fs.unlinkSync(this.filePath);
       console.log('[RebuildInProgressPlugin] File has been removed: %s', this.filePath);
     });
