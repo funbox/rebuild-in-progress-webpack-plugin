@@ -1,4 +1,4 @@
-# funbox-rebuild-in-progress-webpack-plugin
+# @funboxteam/rebuild-in-progress-webpack-plugin
 
 ## Description
 
@@ -19,7 +19,7 @@ Using this file external programs can understand that the bundle building is ove
 Add the plugin in `plugins` array as usual:
 
 ```javascript
-var RebuildInProgressPlugin = require('funbox-rebuild-in-progress-webpack-plugin');
+var RebuildInProgressPlugin = require('@funboxteam/rebuild-in-progress-webpack-plugin');
 
 module.exports = {
   plugins: [
@@ -31,7 +31,7 @@ module.exports = {
 Set filename if you need to:
 
 ```javascript
-var RebuildInProgressPlugin = require('funbox-rebuild-in-progress-webpack-plugin');
+var RebuildInProgressPlugin = require('@funboxteam/rebuild-in-progress-webpack-plugin');
 const rebuildInProgressFile = 'node_modules/.alternativeName';
 
 module.exports = {

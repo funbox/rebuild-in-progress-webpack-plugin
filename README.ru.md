@@ -1,4 +1,4 @@
-# funbox-rebuild-in-progress-webpack-plugin
+# @funboxteam/rebuild-in-progress-webpack-plugin
 
 ## Описание плагина
 
@@ -19,7 +19,7 @@
 Подключение и использование плагина стандартно:
 
 ```javascript
-var RebuildInProgressPlugin = require('funbox-rebuild-in-progress-webpack-plugin');
+var RebuildInProgressPlugin = require('@funboxteam/rebuild-in-progress-webpack-plugin');
 
 module.exports = {
   plugins: [
@@ -31,7 +31,7 @@ module.exports = {
 Подключение плагина с нестандартным именем:
 
 ```javascript
-var RebuildInProgressPlugin = require('funbox-rebuild-in-progress-webpack-plugin');
+var RebuildInProgressPlugin = require('@funboxteam/rebuild-in-progress-webpack-plugin');
 const rebuildInProgressFile = 'node_modules/.alternativeName';
 
 module.exports = {
