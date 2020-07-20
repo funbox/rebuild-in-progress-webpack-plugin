@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.0.0 (20.07.2020)
+
+* Add LICENSE file.
+* Setup ESLint.
+* Prepare the package for publishing on GitHub.
+
 ## 3.0.0 (26.02.2019)
 
 * Rewrite for compatibility with webpack 4.
