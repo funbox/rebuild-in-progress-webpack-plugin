@@ -1,25 +1,23 @@
 # @funboxteam/rebuild-in-progress-webpack-plugin
 
-## Описание плагина
+[![npm](https://img.shields.io/npm/v/@funboxteam/rebuild-in-progress-webpack-plugin.svg)](https://www.npmjs.com/package/@funboxteam/rebuild-in-progress-webpack-plugin)
 
-Иногда внешним программам может потребоваться знание о том, в каком состоянии находится сборка проекта.
+Плагин для Вебпака, создающий файл-индикатор во время сборки и удаляющий его после неё.
 
-Например, для тестов (особенно приемочных) важно понимать, что webpack собрал файлы проекта и можно начинать процесс тестирования.
+## Назначение
 
-Для решения этой задачи был создан плагин **RebuildInProgress**.
+Иногда внешним программам может потребоваться знание о том, в каком состоянии находится сборка проекта. Например, 
+для тестов (особенно приемочных) важно понимать, что Вебпак собрал файлы проекта и можно начинать процесс тестирования.
 
-В начале сборки он создает файл статуса прогресса `node_modules/.rebuildInProgress`, а когда сборка окончена — удаляет этот файл.
+Для решения этой задачи был создан плагин **RebuildInProgress**. В начале сборки он создает файл статуса прогресса 
+`node_modules/.rebuildInProgress`, а когда сборка окончена — удаляет его. 
 
-Имя файла статуса прогресса сборки можно передать при инициализации плагина.
-
-Используя эти знания, сторонние программы могут понять, когда сборка готова.
-
-## Использование плагина в проекте
+## Использование
 
 Подключение и использование плагина стандартно:
 
 ```javascript
-var RebuildInProgressPlugin = require('@funboxteam/rebuild-in-progress-webpack-plugin');
+const RebuildInProgressPlugin = require('@funboxteam/rebuild-in-progress-webpack-plugin');
 
 module.exports = {
   plugins: [
@@ -28,27 +26,31 @@ module.exports = {
 }
 ```
 
-Подключение плагина с нестандартным именем:
+Можно передать свой путь до файла, если стандартный не подходит по каким-то причинам:
 
 ```javascript
-var RebuildInProgressPlugin = require('@funboxteam/rebuild-in-progress-webpack-plugin');
-const rebuildInProgressFile = 'node_modules/.alternativeName';
+const RebuildInProgressPlugin = require('@funboxteam/rebuild-in-progress-webpack-plugin');
+const rebuildInProgressPath = 'node_modules/.alternativeName';
 
 module.exports = {
   plugins: [
-    new RebuildInProgressPlugin(rebuildInProgressFile)
+    new RebuildInProgressPlugin(rebuildInProgressPath)
   ]
 }
 ```
 
 ## Отслеживание статуса сборки
 
-```javascript
-const rebuildInProgressFile = 'node_modules/.rebuildInProgress';
+Пример того, как можно отслеживать статус сборки с помощью встроенной в Node.js 
+[библиотеки `fs`](https://nodejs.org/docs/latest/api/fs.html#fs_fs_watch_filename_options_listener):
 
-fs.watch(path.dirname(rebuildInProgressFile), (eventType, filename) => {
-  if (eventType === 'rename' && filename === path.basename(rebuildInProgressFile)) {
-    if (fs.existsSync(rebuildInProgressFile)) {
+```javascript
+const fs = require('fs');
+const rebuildInProgressPath = 'node_modules/.rebuildInProgress';
+
+fs.watch(path.dirname(rebuildInProgressPath), (eventType, filename) => {
+  if (eventType === 'rename' && filename === path.basename(rebuildInProgressPath)) {
+    if (fs.existsSync(rebuildInProgressPath)) {
       // Сборка началась
     } else {
       // Сборка закончилась
@@ -56,3 +58,5 @@ fs.watch(path.dirname(rebuildInProgressFile), (eventType, filename) => {
   }
 });
 ```
+
+[![Sponsored by FunBox](https://funbox.ru/badges/sponsored_by_funbox_centered.svg)](https://funbox.ru)

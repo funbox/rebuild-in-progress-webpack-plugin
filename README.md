@@ -1,25 +1,25 @@
 # @funboxteam/rebuild-in-progress-webpack-plugin
 
-## Description
+[![npm](https://img.shields.io/npm/v/@funboxteam/rebuild-in-progress-webpack-plugin.svg)](https://www.npmjs.com/package/@funboxteam/rebuild-in-progress-webpack-plugin)
 
-Sometimes external programs want to know the project building state.
+Webpack plugin that creates the file indicator at the beginning of the build and deletes it at the end.
 
-E.g. it's important to know it during tests running (especially E2E), because we should start testing after webpack's building stage.
+[По-русски](./README.ru.md)
 
-To solve this problem **RebuildInProgress** plugin was created.
+## Rationale
 
-It creates the file `node_modules/.rebuildInProgress` when webpack starts to build and removes it afterwards. 
+Sometimes external programs have to know the project building state. E.g. it's important to have this knowledge for 
+tests running (especially E2E), because testing should be started when the project is completely built.
 
-File name can be set during plugin initialization. 
-
-Using this file external programs can understand that the bundle building is over.
+To solve this problem **RebuildInProgress** plugin was created. It creates the file `node_modules/.rebuildInProgress` 
+when webpack starts to build the project and removes it at the end. 
 
 ## Usage
 
 Add the plugin in `plugins` array as usual:
 
 ```javascript
-var RebuildInProgressPlugin = require('@funboxteam/rebuild-in-progress-webpack-plugin');
+const RebuildInProgressPlugin = require('@funboxteam/rebuild-in-progress-webpack-plugin');
 
 module.exports = {
   plugins: [
@@ -28,27 +28,31 @@ module.exports = {
 }
 ```
 
-Set filename if you need to:
+Set the path to the file if the default one isn't suitable:
 
 ```javascript
-var RebuildInProgressPlugin = require('@funboxteam/rebuild-in-progress-webpack-plugin');
-const rebuildInProgressFile = 'node_modules/.alternativeName';
+const RebuildInProgressPlugin = require('@funboxteam/rebuild-in-progress-webpack-plugin');
+const rebuildInProgressPath = 'node_modules/.alternativeName';
 
 module.exports = {
   plugins: [
-    new RebuildInProgressPlugin(rebuildInProgressFile)
+    new RebuildInProgressPlugin(rebuildInProgressPath)
   ]
 }
 ```
 
 ## Build state watching
 
-```javascript
-const rebuildInProgressFile = 'node_modules/.rebuildInProgress';
+Here's an example of watching for build state using 
+[`fs`]((https://nodejs.org/docs/latest/api/fs.html#fs_fs_watch_filename_options_listener)):
 
-fs.watch(path.dirname(rebuildInProgressFile), (eventType, filename) => {
-  if (eventType === 'rename' && filename === path.basename(rebuildInProgressFile)) {
-    if (fs.existsSync(rebuildInProgressFile)) {
+```javascript
+const fs = require('fs');
+const rebuildInProgressPath = 'node_modules/.rebuildInProgress';
+
+fs.watch(path.dirname(rebuildInProgressPath), (eventType, filename) => {
+  if (eventType === 'rename' && filename === path.basename(rebuildInProgressPath)) {
+    if (fs.existsSync(rebuildInProgressPath)) {
       // Build has been started
     } else {
       // Build has been completed
@@ -56,3 +60,5 @@ fs.watch(path.dirname(rebuildInProgressFile), (eventType, filename) => {
   }
 });
 ```
+
+[![Sponsored by FunBox](https://funbox.ru/badges/sponsored_by_funbox_centered.svg)](https://funbox.ru)
