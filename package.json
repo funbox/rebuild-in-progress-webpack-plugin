@@ -13,7 +13,14 @@
   ],
   "author": "Slava Rachek <newagebegins@gmail.com> (https://github.com/newagebegins)",
   "license": "MIT",
+  "scripts": {
+    "lint": "eslint --cache --ext .js ."
+  },
   "peerDependencies": {
     "webpack": "^4.0.0"
+  },
+  "devDependencies": {
+    "@funboxteam/eslint-config": "5.0.0",
+    "eslint": "5.16.0"
   }
 }

@@ -19,7 +19,7 @@ class RebuildInProgressPlugin {
       fs.unlinkSync(this.filePath);
       console.log('[RebuildInProgressPlugin] File has been removed: %s', this.filePath);
     });
-  };
+  }
 }
 
 module.exports = RebuildInProgressPlugin;
