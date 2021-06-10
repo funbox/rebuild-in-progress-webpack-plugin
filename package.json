@@ -2,7 +2,11 @@
   "name": "@funboxteam/rebuild-in-progress-webpack-plugin",
   "version": "4.0.0",
   "description": "Creates the file indicator at the beginning of the build and deletes it at the end.",
-  "keywords": ["webpack", "plugin", "tests"],
+  "keywords": [
+    "webpack",
+    "plugin",
+    "tests"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/funbox/rebuild-in-progress-webpack-plugin"
