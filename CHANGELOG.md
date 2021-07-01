@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.1.0 (03.07.2021)
+
+Changed required Webpack version to >=4.0.0.
+
+
 ## 4.0.1 (10.06.2021)
 
 Fixed several security vulnerabilities:
