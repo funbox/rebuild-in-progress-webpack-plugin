@@ -18,7 +18,8 @@
   "author": "Slava Rachek <newagebegins@gmail.com> (https://github.com/newagebegins)",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint --cache --ext .js ."
+    "lint": "eslint --cache --ext .js .",
+    "prepublishOnly": "lawyer"
   },
   "peerDependencies": {
     "webpack": ">=4.0.0"
